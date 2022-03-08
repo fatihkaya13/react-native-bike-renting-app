@@ -1,21 +1,39 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React from "react";
+import tw from "tailwind-react-native-classnames";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import NavOptions from "../components/NavOptions";
+import { GOOGLE_MAPS_API_KEY } from "@env";
 
-const MapsScreen = () => {
+const MapScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>MapsScreen</Text>
-    </View>
+    <SafeAreaView style={tw`bg-white h-full`}>
+      <View style={tw`p-5`}>
+        <GooglePlacesAutocomplete
+          placeholder="Where From?"
+          styles={{
+            container: {
+              flex: 0,
+            },
+            textInput: {
+              fontSize: 18,
+            },
+          }}
+          fetchDetails={true}
+          returnKeyType={"search"}
+          enablePoweredByContainer={false}
+          minLength={2}
+          query={{
+            key: GOOGLE_MAPS_API_KEY,
+            langauge: "en",
+          }}
+          nearbyPlacesAPI="GooglePlacesSearch"
+          debounce={400}
+        />
+        <NavOptions />
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default MapsScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default MapScreen;

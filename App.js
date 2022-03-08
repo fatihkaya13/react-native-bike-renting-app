@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import CreditScreen from "./screens/CreditScreen";
-import MapScreen from "./screens/MapScreen";
 import HistoryScreen from "./screens/HistoryScreen";
+import MapStack from "./screens/MapStack";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -12,9 +12,21 @@ export default function App() {
   return (
     <NavigationContainer>
       <BottomTab.Navigator>
-        <BottomTab.Screen name="Credit" component={CreditScreen} />
-        <BottomTab.Screen name="Map" component={MapScreen} />
-        <BottomTab.Screen name="History" component={HistoryScreen} />
+        <BottomTab.Screen
+          name="Credit"
+          component={CreditScreen}
+          options={{ headerShown: false }}
+        />
+        <BottomTab.Screen
+          name="Map"
+          component={MapStack}
+          options={{ headerShown: false }}
+        />
+        <BottomTab.Screen
+          name="History"
+          component={HistoryScreen}
+          options={{ headerShown: false }}
+        />
       </BottomTab.Navigator>
     </NavigationContainer>
   );
@@ -28,3 +40,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
