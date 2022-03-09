@@ -1,39 +1,60 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import NavOptions from "../components/NavOptions";
-import { GOOGLE_MAPS_API_KEY } from "@env";
+import Map from "../components/Map";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+
+import NavigateCard from "../components/NavigateCard";
+
+import RideInformations from "../components/RideInformations";
 
 const MapScreen = () => {
+  const Stack = createStackNavigator();
+  const navigation = useNavigation();
+
   return (
-    <SafeAreaView style={tw`bg-white h-full`}>
-      <View style={tw`p-5`}>
-        <GooglePlacesAutocomplete
-          placeholder="Where From?"
-          styles={{
-            container: {
-              flex: 0,
-            },
-            textInput: {
-              fontSize: 18,
-            },
-          }}
-          fetchDetails={true}
-          returnKeyType={"search"}
-          enablePoweredByContainer={false}
-          minLength={2}
-          query={{
-            key: GOOGLE_MAPS_API_KEY,
-            langauge: "en",
-          }}
-          nearbyPlacesAPI="GooglePlacesSearch"
-          debounce={400}
+    <View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("TourScreen")}
+        style={tw`bg-gray-100 absolute top-16 right-8 z-50 p-3 rounded-full shadow-lg`}
+      >
+        <Icon name="people" />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={tw`bg-gray-100 absolute top-16 left-8 z-50 p-3 rounded-full shadow-lg`}
+      >
+        <Image
+          style={{ width: 30, height: 30, resizeMode: "contain" }}
+          source={require("../assets/location.png")}
         />
-        <NavOptions />
+      </TouchableOpacity>
+
+      <View style={tw`h-1/2`}>
+        <Map />
       </View>
-    </SafeAreaView>
+      <View style={tw`h-1/2`}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="NavigateCard"
+            component={NavigateCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="RideInformation"
+            component={RideInformations}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </View>
+    </View>
   );
 };
 
 export default MapScreen;
+
+const styles = StyleSheet.create({});

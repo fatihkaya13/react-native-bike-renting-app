@@ -5,30 +5,34 @@ import { NavigationContainer } from "@react-navigation/native";
 import CreditScreen from "./screens/CreditScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import MapStack from "./screens/MapStack";
-
-const BottomTab = createBottomTabNavigator();
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export default function App() {
+  const BottomTab = createBottomTabNavigator();
+
   return (
-    <NavigationContainer>
-      <BottomTab.Navigator>
-        <BottomTab.Screen
-          name="Credit"
-          component={CreditScreen}
-          options={{ headerShown: false }}
-        />
-        <BottomTab.Screen
-          name="Map"
-          component={MapStack}
-          options={{ headerShown: false }}
-        />
-        <BottomTab.Screen
-          name="History"
-          component={HistoryScreen}
-          options={{ headerShown: false }}
-        />
-      </BottomTab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <BottomTab.Navigator>
+          <BottomTab.Screen
+            name="Credit"
+            component={CreditScreen}
+            options={{ headerShown: false }}
+          />
+          <BottomTab.Screen
+            name="Map"
+            component={MapStack}
+            options={{ headerShown: false }}
+          />
+          <BottomTab.Screen
+            name="History"
+            component={HistoryScreen}
+            options={{ headerShown: false }}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
@@ -40,4 +44,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-

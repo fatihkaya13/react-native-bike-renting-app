@@ -9,7 +9,9 @@ import React from "react";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
+import ReservationInfoScreen from "./ReservationInfoScreen";
 import MapScreen from "./MapScreen";
+import TourScreen from "./TourScreen";
 
 const Stack = createStackNavigator();
 
@@ -23,8 +25,18 @@ const MapStack = () => {
       >
         <Stack.Navigator>
           <Stack.Screen
+            name="ReservationInfoScreen"
+            component={ReservationInfoScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="MapScreen"
             component={MapScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TourScreen"
+            component={TourScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
