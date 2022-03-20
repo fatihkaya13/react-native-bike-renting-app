@@ -23,12 +23,12 @@ const data = [
   {
     id: "2",
     title: "Bike 2",
-    multiplier: 0.2,
+    multiplier: 0.1,
   },
   {
     id: "3",
     title: "Bike 3",
-    multiplier: 0.75,
+    multiplier: 0.1,
   },
 ];
 
@@ -65,7 +65,7 @@ const RideInformations = () => {
           >
             <Image
               style={{ width: 60, height: 60, resizeMode: "contain" }}
-              source={require("../assets/bike.png")}
+              source={require("../assets/rental-4.png")}
             />
             <View style={tw`-ml-6`}>
               <Text style={tw`text-xl font-semibold`}>{item.title}</Text>
