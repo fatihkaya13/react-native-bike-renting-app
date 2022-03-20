@@ -126,7 +126,7 @@ const Map = () => {
           title="Available Bike"
           identifier="origin"
           image={require("../assets/rental-4.png")}
-          onPress={() => alert("bike is ready")}
+          /*onPress={() => alert("bike is ready")}*/
         />
       )}
       {origin?.location && (
