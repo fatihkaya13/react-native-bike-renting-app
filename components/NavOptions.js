@@ -13,7 +13,7 @@ const NavOptions = () => {
   console.log(origin);
   return (
     <TouchableOpacity
-      style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-80 rounded`}
+      style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 mt-10 w-80 rounded`}
       onPress={() => navigation.navigate("MapScreen")}
       disabled={!origin}
     >
